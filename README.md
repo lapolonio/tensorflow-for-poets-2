@@ -21,6 +21,25 @@ jupyter notebook
 
 ## How to use
 
+- Open `Data Retreival.ipynb` and execute all cells to retrieve all relevant source flickr images, 
+create thumbnail images and put in relevant location
+- In repo head directory execute:
+```
+IMAGE_SIZE=224
+ARCHITECTURE="mobilenet_1.0_${IMAGE_SIZE}"
+
+python -m scripts.retrain \
+  --bottleneck_dir=tf_files/bottlenecks \
+  --how_many_training_steps=4000 \
+  --model_dir=tf_files/models/"${ARCHITECTURE}" \
+  --summaries_dir=tf_files/training_summaries/"${ARCHITECTURE}" \
+  --output_graph=tf_files/retrained_graph.pb \
+  --output_labels=tf_files/retrained_labels.txt \
+  --architecture="${ARCHITECTURE}" \
+  --image_dir=tf_files/ibm_task
+```
+- After model is finished training. Open `Model Performance Analysis.ipynb` for model performance
+- Open `attributions.ipynb` to visualize gradient activations to gain insight into model internals
 
 
 # Resources
@@ -45,5 +64,7 @@ The `scripts` directory contains helpers for the codelab.
 ## Helpful commands
 ```
 pip freeze > requirements.txt
+
+tensorboard --logdir tf_files/training_summaries &
 ```
 
