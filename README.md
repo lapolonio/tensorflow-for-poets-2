@@ -1,6 +1,10 @@
 # Overview
 
 ## Setup environment
+```
+Boat urls from http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02858304
+```
+
 
 ```
 mkdir cloud
@@ -42,12 +46,23 @@ python -m scripts.retrain \
 - Open `attributions.ipynb` to visualize gradient activations to gain insight into model internals
 
 
+## Design Considerations
+
+Google has made available, through Tensorflow, production level deep learning models for the public to use. One model
+called MobileNet, optimized for speed and size while maximizing accuracy, was trained on ImageNet data and is 
+available to customization. Incorporating an existing model into another model is called Transfer Learning.
+
+The parameters I specified were input image size, 224px and model fraction, 1.0 to maximize the possible accuracy of
+the predictions. I used 80/20 split on the retrieved images for each category. I assumed that the images were randomly
+ordered, representative of each category distributions and spilt the retrieved image file lists. 80% of the images were used
+for training and evaluating the performance of the model. The other 20% was used to measure the out of sample performance. 
+
 # Resources
 
 ## TensorFlow for poets 2 Overview
 
 This repo contains code for the
-["TensorFlow for poets 2" codelab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets-2).
+["TensorFlow for poets 2" codelab](https://codelabs.developers.google.com/codelabs/tensorflow-for-poets/index.html?index=..%2F..%2Findex#0).
 
 This repo contains a simplified and trimmed down version of tensorflow's
 [android image classification example](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android)
