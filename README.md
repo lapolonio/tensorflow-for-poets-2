@@ -27,7 +27,7 @@ jupyter notebook
 
 - Open `Data Retreival.ipynb` and execute all cells to retrieve all relevant source flickr images, 
 create thumbnail images and put in relevant location
-- In repo head directory execute:
+- In repo head directory to train model execute:
 ```
 IMAGE_SIZE=224
 ARCHITECTURE="mobilenet_1.0_${IMAGE_SIZE}"
